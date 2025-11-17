@@ -15,10 +15,6 @@ This project demonstrates database design and SQL implementation for a healthcar
 
 ## 🗄️ Database Schema
 
-### Entity Relationship Diagram
-
-![ER Diagram](er-diagram.png)
-
 ### Tables Overview
 
 **Core Entities:**
