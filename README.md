@@ -4,13 +4,13 @@ A comprehensive MySQL database schema for hospital management, designed to handl
 
 ## 📊 Project Overview
 
-This project demonstrates database design and SQL implementation for a healthcare management system. The database supports core hospital operations including patient registration, appointment scheduling, treatment tracking, and billing.
+This project demonstrates database design and SQL implementation for a healthcare management system. The database supports core hospital operations, including patient registration, appointment scheduling, treatment tracking, and billing.
 
 ## 🎯 Project Objectives
 
 - Design a normalized relational database for hospital operations
 - Implement entity relationships following healthcare data standards
-- Create efficient schema for patient care workflow
+- Create an efficient schema for patient care workflow
 - Demonstrate SQL DDL (Data Definition Language) skills
 
 ## 🗄️ Database Schema
