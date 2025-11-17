@@ -177,7 +177,7 @@ HAVING Outstanding > 0;
 
 ## 📁 Repository Contents
 
-- `hospital_schema.sql` - Complete database schema
+- `hospital_schema` - Complete database schema
 - `sample_data.sql` - Sample INSERT statements
 - `queries.sql` - Example analytical queries
 - `README.md` - This documentation
