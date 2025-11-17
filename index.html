@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Database Design - SQL Project</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .diagram {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 10px 10px 0;
+            font-weight: 600;
+        }
+        .btn:hover { background: #5568d3; }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .badge {
+            display: inline-block;
+            background: #e3f2ff;
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏥 Hospital Database Design</h1>
+        <p>Comprehensive MySQL Schema for Healthcare Management</p>
+    </header>
+    
+    <div class="content">
+        <div>
+            <span class="badge">MySQL</span>
+            <span class="badge">Database Design</span>
+            <span class="badge">Healthcare</span>
+            <span class="badge">SQL</span>
+        </div>
+        
+        <h2>Project Overview</h2>
+        <p>A normalized relational database designed to manage core hospital operations including patient registration, appointment scheduling, treatment tracking, and billing systems.</p>
+        
+        <h2>🗄️ Database Schema</h2>
+        <img src="er-diagram.png" alt="ER Diagram" class="diagram">
+        
+        <h3>Core Tables</h3>
+        <ul>
+            <li><strong>Patients:</strong> Demographics, contact info, insurance details</li>
+            <li><strong>Doctors:</strong> Medical staff, specializations, departments</li>
+            <li><strong>Appointments:</strong> Scheduling system with status tracking</li>
+            <li><strong>Treatments:</strong> Medical procedures and interventions</li>
+            <li><strong>Billing:</strong> Financial transactions and insurance claims</li>
+        </ul>
+        
+        <h3>Sample Query: Patient Appointment History</h3>
+        <pre><code>SELECT 
+    p.FirstName, p.LastName, 
+    a.AppointmentDate, 
+    d.FirstName AS DoctorFirstName,
+    d.Specialization
+FROM Patients p
+JOIN Appointments a ON p.PatientID = a.PatientID
+JOIN Doctors d ON a.DoctorID = d.DoctorID
+WHERE p.PatientID = 1
+ORDER BY a.AppointmentDate DESC;</code></pre>
+        
+        <h2>💡 Key Features</h2>
+        <ul>
+            <li>✅ 3rd Normal Form (3NF) normalization</li>
+            <li>✅ Enforced referential integrity with foreign keys</li>
+            <li>✅ Optimized data types for healthcare data</li>
+            <li>✅ Support for complex queries and reporting</li>
+        </ul>
+        
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/YOUR-USERNAME/hospital-database-sql" class="btn">📂 View on GitHub</a>
+            <a href="hospital_schema.sql" download class="btn">📥 Download Schema</a>
+            <a href="https://deepnote.com/workspace/YOUR-DEEPNOTE-LINK" class="btn">🔗 View in Deepnote</a>
+        </div>
+    </div>
+</body>
+</html>
