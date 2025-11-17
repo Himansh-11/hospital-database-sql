@@ -180,7 +180,6 @@ HAVING Outstanding > 0;
 - `hospital_schema.sql` - Complete database schema
 - `sample_data.sql` - Sample INSERT statements
 - `queries.sql` - Example analytical queries
-- `er-diagram.png` - Entity relationship diagram
 - `README.md` - This documentation
 
 ## 🔗 Related Projects
