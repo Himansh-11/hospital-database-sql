@@ -184,14 +184,14 @@
         
         <h3>Sample Query: Retrieving Patient Info Based On Patient's Condition</h3>
         <pre><code>
-            SELECT 
-                CASE 
-                    WHEN PatientStatus = 'Recovering' THEN CONCAT('Birthday of recovering patient is ', PatientBirthday)
-                    WHEN PatientStatus = 'Critical' THEN CONCAT('Birthday of critical patient is ', PatientBirthday)
-                    ELSE CONCAT(PatientStatus, ' is not a patient')
-                END AS Patient_Info
-                FROM Patients
-                WHERE PatientStatus IN ('Recovering', 'Critical');</code></pre>
+SELECT 
+    CASE 
+        WHEN PatientStatus = 'Recovering' THEN CONCAT('Birthday of recovering patient is ', PatientBirthday)
+        WHEN PatientStatus = 'Critical' THEN CONCAT('Birthday of critical patient is ', PatientBirthday)
+        ELSE CONCAT(PatientStatus, ' is not a patient')
+    END AS Patient_Info
+    FROM Patients
+    WHERE PatientStatus IN ('Recovering', 'Critical');</code></pre>
         
         <h2>💡 Key Features</h2>
         <ul>
