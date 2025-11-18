@@ -182,18 +182,15 @@
             <li><strong>Rooms:</strong> Facility management and bed assignments</li>
         </ul>
         
-        <h3>Sample Query: Patient Appointment History</h3>
+        <h3>Sample Query: Retrieving Patient Info Based On Patient's Condition</h3>
         <pre><code>SELECT 
-    p.FirstName, 
-    p.LastName, 
-    a.AppointmentDate, 
-    d.FirstName AS DoctorFirstName,
-    d.Specialization
-FROM Patients p
-JOIN Appointments a ON p.PatientID = a.PatientID
-JOIN Doctors d ON a.DoctorID = d.DoctorID
-WHERE p.PatientID = 1
-ORDER BY a.AppointmentDate DESC;</code></pre>
+                    CASE 
+                        WHEN PatientStatus = 'Recovering' THEN CONCAT('Birthday of recovering patient is ', PatientBirthday)
+                        WHEN PatientStatus = 'Critical' THEN CONCAT('Birthday of critical patient is ', PatientBirthday)
+                        ELSE CONCAT(PatientStatus, ' is not a patient')
+                    END AS Patient_Info
+                    FROM Patients
+                    WHERE PatientStatus IN ('Recovering', 'Critical');</code></pre>
         
         <h2>💡 Key Features</h2>
         <ul>
