@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Database Design - SQL Project</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background: #f5f5f5;
+            background: #1a1a1a;
+            color: #e0e0e0;
             line-height: 1.6;
         }
+        
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -21,20 +25,51 @@
             border-radius: 12px;
             margin-bottom: 40px;
         }
+        
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.95; }
+        
         .content {
-            background: white;
+            background: #242424;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid #333;
         }
+        
+        h2 {
+            color: #8b9bea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #a0aef0;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        p, li {
+            color: #c4c4c4;
+            margin: 10px 0;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
         .diagram {
             width: 100%;
             max-width: 800px;
             margin: 30px auto;
             display: block;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border: 2px solid #333;
         }
+        
         .btn {
             display: inline-block;
             background: #667eea;
@@ -44,29 +79,72 @@
             border-radius: 6px;
             margin: 10px 10px 10px 0;
             font-weight: 600;
+            transition: all 0.3s ease;
         }
-        .btn:hover { background: #5568d3; }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
+        
+        .btn:hover { 
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
-        pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
+        
         .badge {
             display: inline-block;
-            background: #e3f2ff;
-            color: #667eea;
+            background: #2d2d4a;
+            color: #8b9bea;
             padding: 6px 12px;
             border-radius: 16px;
             font-size: 0.9em;
             margin: 5px;
+            border: 1px solid #3d3d5a;
+        }
+        
+        code {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #333;
+        }
+        
+        pre {
+            background: #1a1a1a;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #333;
+            margin: 15px 0;
+        }
+        
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        strong {
+            color: #8b9bea;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+        
+        footer a {
+            color: #8b9bea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #a0aef0;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -82,24 +160,31 @@
             <span class="badge">Database Design</span>
             <span class="badge">Healthcare</span>
             <span class="badge">SQL</span>
+            <span class="badge">Data Modeling</span>
         </div>
         
         <h2>Project Overview</h2>
-        <p>A normalized relational database designed to manage core hospital operations, including patient registration, appointment scheduling, treatment tracking, and billing systems.</p>
+        <p>A normalized relational database designed to manage core hospital operations, including patient registration, appointment scheduling, treatment tracking, and billing systems. Built following industry best practices with proper normalization and referential integrity.</p>
         
-          
+        <h2>🗄️ Database Schema</h2>
+        <img src="sql-preview.png" alt="Database Preview" class="diagram">
+        
         <h3>Core Tables</h3>
         <ul>
-            <li><strong>Patients:</strong> Demographics, contact info, insurance details</li>
-            <li><strong>Doctors:</strong> Medical staff, specializations, departments</li>
-            <li><strong>Appointments:</strong> Scheduling system with status tracking</li>
-            <li><strong>Treatments:</strong> Medical procedures and interventions</li>
+            <li><strong>Patients:</strong> Demographics, contact information, insurance details</li>
+            <li><strong>Doctors:</strong> Medical staff profiles, specializations, department assignments</li>
+            <li><strong>Appointments:</strong> Scheduling system with status tracking and notes</li>
+            <li><strong>Treatments:</strong> Medical procedures and interventions tracking</li>
+            <li><strong>Prescriptions:</strong> Medication records linked to appointments</li>
             <li><strong>Billing:</strong> Financial transactions and insurance claims</li>
+            <li><strong>Departments:</strong> Hospital organizational structure</li>
+            <li><strong>Rooms:</strong> Facility management and bed assignments</li>
         </ul>
         
         <h3>Sample Query: Patient Appointment History</h3>
         <pre><code>SELECT 
-    p.FirstName, p.LastName, 
+    p.FirstName, 
+    p.LastName, 
     a.AppointmentDate, 
     d.FirstName AS DoctorFirstName,
     d.Specialization
@@ -111,17 +196,56 @@ ORDER BY a.AppointmentDate DESC;</code></pre>
         
         <h2>💡 Key Features</h2>
         <ul>
-            <li>✅ 3rd Normal Form (3NF) normalization</li>
-            <li>✅ Enforced referential integrity with foreign keys</li>
-            <li>✅ Optimized data types for healthcare data</li>
-            <li>✅ Support for complex queries and reporting</li>
+            <li>✅ <strong>3rd Normal Form (3NF)</strong> normalization to eliminate data redundancy</li>
+            <li>✅ <strong>Referential Integrity</strong> enforced through foreign key constraints</li>
+            <li>✅ <strong>Optimized Data Types</strong> for healthcare-specific data</li>
+            <li>✅ <strong>Scalable Architecture</strong> supporting complex queries and reporting</li>
+            <li>✅ <strong>HIPAA-Compliant Structure</strong> with proper data separation</li>
+        </ul>
+        
+        <h3>Entity Relationships</h3>
+        <ul>
+            <li><strong>Patients ↔ Appointments:</strong> One-to-Many (One patient, many appointments)</li>
+            <li><strong>Doctors ↔ Appointments:</strong> One-to-Many (One doctor, many appointments)</li>
+            <li><strong>Appointments ↔ Treatments:</strong> One-to-Many (One appointment, multiple treatments)</li>
+            <li><strong>Departments ↔ Doctors:</strong> One-to-Many (One department, many doctors)</li>
+            <li><strong>Patients ↔ Billing:</strong> One-to-Many (One patient, multiple bills)</li>
+        </ul>
+        
+        <h2>🎯 Business Use Cases</h2>
+        <p>This database supports critical healthcare operations:</p>
+        <ul>
+            <li><strong>Patient Management:</strong> Track patient demographics, medical history, and visits</li>
+            <li><strong>Appointment Scheduling:</strong> Manage doctor availability and patient bookings</li>
+            <li><strong>Treatment Tracking:</strong> Record procedures, medications, and outcomes</li>
+            <li><strong>Financial Operations:</strong> Handle billing, insurance claims, and payments</li>
+            <li><strong>Analytics & Reporting:</strong> Generate insights on hospital performance</li>
+        </ul>
+        
+        <h2>🛠️ Technical Implementation</h2>
+        <ul>
+            <li><strong>Database:</strong> MySQL 8.0</li>
+            <li><strong>Normalization:</strong> 3rd Normal Form (3NF)</li>
+            <li><strong>Constraints:</strong> Primary keys, foreign keys, NOT NULL, UNIQUE</li>
+            <li><strong>Data Types:</strong> VARCHAR, INT, DATE, TIME, DECIMAL, ENUM, TEXT</li>
+            <li><strong>Tools:</strong> MySQL Workbench, Deepnote</li>
         </ul>
         
         <div style="margin-top: 40px;">
             <a href="https://github.com/Himansh-11/hospital-database-sql" class="btn">📂 View on GitHub</a>
-            <a href="hospital_schema.ipynb" download class="btn">📥 Download Schema</a>
-            <a href="https://deepnote.com/workspace/himansh-ab44ce92-eb8c-479b-85b2-a86971a26e8c/project/SQL-Creating-a-Hospital-Database-in-MySQL-Workbench-b0cf29c6-f4ce-4668-9f61-b9b38b43f1d8/notebook/SQL-Creating-a-Hospital-Database-in-MySQL-Workbench-7a1f50e423c14643bb13efddbda8c87a?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=b0cf29c6-f4ce-4668-9f61-b9b38b43f1d8" class="btn">🔗 View in Deepnote</a>
+            <a href="hospital_schema.sql" download class="btn">📥 Download Schema</a>
+            <a href="https://himansh-11.github.io" class="btn">🏠 Back to Portfolio</a>
         </div>
     </div>
+    
+    <footer>
+        <p><strong>Himansh Rajak</strong> | Healthcare Data Analyst</p>
+        <p>
+            <a href="mailto:himanshr1107@gmail.com">himanshr1107@gmail.com</a> | 
+            <a href="https://linkedin.com/in/himansh-rajak">LinkedIn</a> | 
+            <a href="https://github.com/Himansh-11">GitHub</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 0.9em;">Built with HTML & CSS | Hosted on GitHub Pages</p>
+    </footer>
 </body>
 </html>
