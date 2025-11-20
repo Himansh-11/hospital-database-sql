@@ -6,7 +6,7 @@
 
 -- Author: Himansh
 
--- Date: November 2024
+-- Date: November 2025
 
 -- ============================================================================
 
@@ -84,11 +84,11 @@ ORDER BY TotalRevenue DESC;
 
 
 
--- Key Insight: Dr. Williams (Orthopedics) generates highest revenue ($9,850) 
+-- Key Insight: Dr. Williams (Orthopedics) generates highest revenue ($41,200) 
 
--- with surgical procedures, while Dr. Johnson (Pediatrics) maintains highest 
+-- with surgical procedures, while Dr. Johnson (Pediatrics) maintains the highest 
 
--- patient volume with lower per-visit costs, revealing different specialization 
+-- patient volume with lower per-visit costs, revealing different specializations 
 
 -- models requiring distinct resource allocation strategies.
 
@@ -152,11 +152,9 @@ ORDER BY NumPatients DESC;
 
 -- Key Insight: Critical patients show 100% appointment completion (no 
 
--- cancellations), while Stable patients have 92% completion rate, suggesting 
+-- cancellations), while Stable patients and Recovering Patients have 94.12% and 93.75% completion rates, respectively, suggesting 
 
--- higher engagement when health stakes are perceived as higher. Critical 
-
--- patients average 3.5 appointments vs 1.8 for Stable patients.
+-- higher engagement when health stakes are perceived as higher.
 
 
 
@@ -244,15 +242,15 @@ ORDER BY TotalRevenue DESC;
 
 
 
--- Key Insight: Orthopedics leads with $12,650 total revenue and 100% 
+-- Key Insight: Orthopedics leads with $12,600 total revenue and 100% 
 
--- collection rate, while Oncology shows $17,800 revenue but only 69% 
+-- collection rate, while Oncology shows $20,600 revenue but only 66.5% 
 
--- collection rate, indicating need for improved billing processes. Emergency 
+-- collection rate, indicating need for improved billing processes. Cardiology
 
--- Medicine handles highest volume (5 appointments) but lower per-visit revenue 
+-- handles the highest volume (13 appointments). Pediatrics has the lowest per-visit revenue 
 
--- ($440), suggesting different business models requiring tailored strategies.
+-- ($155.83), suggesting different business models requiring tailored strategies.
 
 
 
@@ -328,13 +326,13 @@ LIMIT 15;
 
 
 
--- Key Insight: Top patient Christopher Jackson (Oncology) spent $17,800 over 
+-- Key Insight: Top patient Christopher Jackson (Oncology) spent $19,400 over 
 
 -- 4 appointments with chemotherapy treatments, while Richard Gonzalez 
 
--- (Orthopedics) spent $12,650 on surgical procedures. High-value patients in 
+-- (Orthopedics) spent $12,050 on surgical procedures. High-value patients in 
 
--- Oncology require 3-4 appointments vs single-visit surgical patients, 
+-- Oncology requires 3-4 appointments vs single-visit surgical patients, 
 
 -- revealing different care models and financial planning needs.
 
@@ -375,3 +373,4 @@ LIMIT 15;
 -- ✓ TOP N analysis with LIMIT
 
 -- ============================================================================</sql><current_tab id="0"/></tab_sql></sqlb_project>
+
