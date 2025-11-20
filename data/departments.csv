@@ -1,0 +1,8 @@
+DepartmentID,DepartmentName,DepartmentHead,FloorNumber,Budget
+1,Cardiology,Dr. Robert Chen,3,2500000.0
+2,Emergency Medicine,Dr. Sarah Williams,1,3200000.0
+3,Pediatrics,Dr. Maria Garcia,2,1800000.0
+4,Orthopedics,Dr. James Wilson,4,2100000.0
+5,Neurology,Dr. Emily Brown,5,2300000.0
+6,Oncology,Dr. Michael Johnson,6,2800000.0
+7,Internal Medicine,Dr. Lisa Anderson,2,1900000.0

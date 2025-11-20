@@ -1,0 +1,11 @@
+RoomID,RoomNumber,RoomType,DepartmentID,Capacity,Status
+1,101,Examination,1,1,Available
+2,102,Examination,1,1,Occupied
+3,103,Examination,1,1,Available
+4,201,Emergency,2,2,Occupied
+5,202,Emergency,2,2,Available
+6,301,Pediatric,3,1,Available
+7,302,Pediatric,3,1,Available
+8,401,Surgery,4,1,Maintenance
+9,402,Surgery,4,1,Available
+10,501,ICU,5,1,Occupied

@@ -1,0 +1,11 @@
+PrescriptionID,AppointmentID,MedicationName,Dosage,Frequency,Duration,RefillsAllowed
+1,3,Lisinopril,10mg,Once daily,90 days,3
+2,5,Nitroglycerin,0.4mg,As needed,30 days,1
+3,9,Metoprolol,50mg,Twice daily,90 days,3
+4,10,Metoprolol,100mg,Twice daily,90 days,3
+5,19,Amoxicillin,500mg,Three times daily,10 days,0
+6,21,Albuterol Inhaler,90mcg,As needed,90 days,2
+7,28,Sumatriptan,50mg,As needed,30 days,2
+8,33,Ondansetron,8mg,As needed,30 days,1
+9,37,Metformin,500mg,Twice daily,90 days,3
+10,39,Amlodipine,5mg,Once daily,90 days,3

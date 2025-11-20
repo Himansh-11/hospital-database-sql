@@ -1,0 +1,16 @@
+TreatmentID,AppointmentID,TreatmentName,TreatmentDate,TreatmentCost,TreatmentNotes
+1,1,ECG,2024-01-15,150.0,Routine cardiac screening
+2,5,ECG,2024-02-12,150.0,Emergency cardiac evaluation
+3,5,Stress Test,2024-02-12,450.0,Cardiac stress evaluation
+4,8,Holter Monitor,2024-01-08,350.0,24-hour cardiac monitoring
+5,13,Emergency CT Scan,2024-03-05,1200.0,Chest CT for chest pain evaluation
+6,15,CT Scan - Head,2024-05-15,1500.0,Emergency stroke protocol
+7,19,Ear Examination,2024-02-28,75.0,Standard ENT exam
+8,23,MRI - Knee,2024-01-18,2000.0,Orthopedic imaging
+9,25,Arthroscopic Surgery,2024-03-15,8500.0,Knee surgery
+10,30,Nerve Conduction Study,2024-03-20,650.0,Neurological assessment
+11,32,Biopsy,2024-01-10,1800.0,Tissue sampling
+12,33,Chemotherapy - Cycle 1,2024-02-05,5000.0,First treatment cycle
+13,34,Chemotherapy - Cycle 2,2024-03-15,5000.0,Second treatment cycle
+14,35,Chemotherapy - Cycle 3,2024-04-20,5000.0,Third treatment cycle
+15,37,A1C Test,2024-02-20,45.0,Diabetes monitoring

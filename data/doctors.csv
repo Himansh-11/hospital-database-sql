@@ -1,0 +1,16 @@
+DoctorID,FirstName,LastName,Specialty,Email,Phone,DepartmentID
+1,Sarah,Martinez,Cardiologist,smartinez@hospital.com,555-0101,1
+2,James,Chen,Emergency Medicine,jchen@hospital.com,555-0102,2
+3,Emily,Johnson,Pediatrician,ejohnson@hospital.com,555-0103,3
+4,Michael,Williams,Orthopedic Surgeon,mwilliams@hospital.com,555-0104,4
+5,Lisa,Anderson,Neurologist,landerson@hospital.com,555-0105,5
+6,Robert,Brown,Oncologist,rbrown@hospital.com,555-0106,6
+7,Maria,Garcia,Internist,mgarcia@hospital.com,555-0107,7
+8,David,Miller,Cardiologist,dmiller@hospital.com,555-0108,1
+9,Jennifer,Davis,Emergency Medicine,jdavis@hospital.com,555-0109,2
+10,Christopher,Rodriguez,Pediatrician,crodriguez@hospital.com,555-0110,3
+11,Amanda,Wilson,Orthopedic Surgeon,awilson@hospital.com,555-0111,4
+12,Daniel,Moore,Neurologist,dmoore@hospital.com,555-0112,5
+13,Jessica,Taylor,Oncologist,jtaylor@hospital.com,555-0113,6
+14,Matthew,Anderson,Internist,manderson@hospital.com,555-0114,7
+15,Ashley,Thomas,Cardiologist,athomas@hospital.com,555-0115,1

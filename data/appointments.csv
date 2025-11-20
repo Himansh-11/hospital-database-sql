@@ -1,0 +1,44 @@
+AppointmentID,PatientID,DoctorID,AppointmentDate,AppointmentTime,AppointmentStatus,ReasonForVisit,Notes
+1,1,1,2024-01-15,09:00:00,Completed,Annual Checkup,"Patient stable, no issues"
+2,1,1,2024-04-20,10:30:00,Completed,Follow-up,Blood pressure improved
+3,1,1,2024-07-10,14:00:00,Completed,Routine Visit,Continue current medication
+4,1,1,2024-10-05,11:15:00,Completed,Follow-up,Patient doing well
+5,2,1,2024-02-12,09:30:00,Completed,Chest Pain,"ECG performed, normal"
+6,2,1,2024-03-15,13:00:00,Completed,Follow-up,Symptoms resolved
+7,2,1,2024-08-22,10:00:00,No-Show,Scheduled Follow-up,Patient did not show
+8,3,1,2024-01-08,08:00:00,Completed,Heart Palpitations,Holter monitor ordered
+9,3,1,2024-01-22,09:00:00,Completed,Follow-up Results,Started on beta blocker
+10,3,1,2024-03-10,10:30:00,Completed,Medication Review,Increased dosage
+11,3,1,2024-06-15,11:00:00,Completed,Follow-up,Condition stable
+12,3,1,2024-09-20,14:30:00,Completed,Routine Visit,Continue treatment
+13,5,2,2024-03-05,02:30:00,Completed,Chest Pain,Emergency admission
+14,5,2,2024-03-12,10:00:00,Completed,Follow-up,"Discharged, stable"
+15,7,2,2024-05-15,23:45:00,Completed,Stroke Symptoms,Emergency CT scan
+16,7,2,2024-05-16,08:00:00,Completed,ICU Follow-up,Transferred to Neurology
+17,10,3,2024-01-20,10:00:00,Completed,Well-Child Visit,Vaccinations up to date
+18,10,3,2024-07-15,11:00:00,Completed,Annual Checkup,Growth normal
+19,11,3,2024-02-28,14:00:00,Completed,Ear Infection,Prescribed antibiotics
+20,11,3,2024-03-15,09:30:00,Completed,Follow-up,Infection cleared
+21,12,3,2024-04-10,13:00:00,Completed,Asthma Check,Inhaler prescribed
+22,12,3,2024-10-22,10:30:00,Cancelled,Follow-up,Family emergency
+23,13,4,2024-01-18,09:00:00,Completed,Knee Pain,MRI ordered
+24,13,4,2024-02-01,10:00:00,Completed,MRI Results,Surgery scheduled
+25,13,4,2024-03-15,08:00:00,Completed,Post-Op Follow-up,Healing well
+26,14,4,2024-05-20,11:00:00,Completed,Shoulder Injury,Physical therapy recommended
+27,14,4,2024-07-01,14:00:00,Completed,Progress Check,Continue PT
+28,16,5,2024-02-15,09:30:00,Completed,Migraines,Medication prescribed
+29,16,5,2024-04-10,13:00:00,Completed,Follow-up,Symptoms improved
+30,17,5,2024-03-20,10:00:00,Completed,Numbness,Nerve conduction test ordered
+31,18,5,2024-06-05,11:30:00,Completed,Memory Issues,Cognitive assessment
+32,19,6,2024-01-10,08:00:00,Completed,Initial Consultation,Biopsy scheduled
+33,19,6,2024-02-05,09:00:00,Completed,Treatment Plan,Chemotherapy started
+34,19,6,2024-03-15,10:00:00,Completed,Chemo Session 2,Tolerating well
+35,19,6,2024-04-20,10:00:00,Completed,Chemo Session 3,Continue treatment
+36,20,6,2024-07-15,11:00:00,Completed,Cancer Screening,Further tests needed
+37,21,7,2024-02-20,09:00:00,Completed,Diabetes Management,A1C test
+38,21,7,2024-05-22,10:30:00,Completed,Follow-up,Blood sugar controlled
+39,22,7,2024-03-10,14:00:00,Completed,Hypertension,Medication adjusted
+40,25,8,2024-04-15,09:00:00,Completed,Heart Rhythm,Holter monitor
+41,30,10,2024-06-20,10:00:00,Completed,Well-Child,Vaccinations
+42,35,12,2024-08-10,11:00:00,Completed,Headaches,CT scan ordered
+43,40,13,2024-09-15,13:00:00,Completed,Follow-up,Treatment ongoing
