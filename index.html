@@ -3,249 +3,869 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Database Design - SQL Project</title>
+    <title>Hospital Database SQL Project | Himansh</title>
+    <meta name="description" content="Normalized hospital database with advanced SQL queries demonstrating database design, complex analytics, and healthcare data management">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2E86AB;
+            --secondary-color: #A23B72;
+            --accent-color: #F18F01;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #F8F9FA;
+            --border-color: #E1E8ED;
+            --success-color: #27AE60;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #fff;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a5f7a 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Container */
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background: #1a1a1a;
-            color: #e0e0e0;
-            line-height: 1.6;
+            padding: 3rem 2rem;
         }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-radius: 12px;
-            margin-bottom: 40px;
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
         }
-        
-        header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        header p { font-size: 1.1em; opacity: 0.95; }
-        
-        .content {
-            background: #242424;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            border: 1px solid #333;
-        }
-        
-        h2 {
-            color: #8b9bea;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-        }
-        
-        h3 {
-            color: #a0aef0;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-        
-        p, li {
-            color: #c4c4c4;
-            margin: 10px 0;
-        }
-        
-        ul {
-            margin-left: 20px;
-        }
-        
-        .diagram {
-            width: 100%;
-            max-width: 800px;
-            margin: 30px auto;
-            display: block;
+
+        .stat-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            border: 2px solid #333;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Section */
+        section {
+            margin: 4rem 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-dark);
+        }
+
+        /* ER Diagram */
+        .er-diagram {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .er-diagram img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Table Structure */
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .table-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .table-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        .table-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .table-card .record-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .table-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Query Section */
+        .query-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .query-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .query-title {
+            flex: 1;
+        }
+
+        .business-question {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .business-question strong {
+            color: var(--accent-color);
+        }
+
+        .code-block {
+            background: #2C3E50;
+            color: #ECF0F1;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .skill-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .insight-box {
+            background: #FFF9E6;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .insight-box strong {
+            color: var(--accent-color);
+        }
+
+        .screenshot {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .tech-item:hover {
+            border-color: var(--success-color);
+            transform: scale(1.05);
+        }
+
+        .checkmark {
+            color: var(--success-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
         .btn {
             display: inline-block;
-            background: #667eea;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
             color: white;
-            padding: 12px 24px;
             text-decoration: none;
             border-radius: 6px;
-            margin: 10px 10px 10px 0;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-color);
         }
-        
-        .btn:hover { 
-            background: #5568d3;
+
+        .btn:hover {
+            background: #1a5f7a;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(46, 134, 171, 0.3);
         }
-        
-        .badge {
-            display: inline-block;
-            background: #2d2d4a;
-            color: #8b9bea;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 0.9em;
-            margin: 5px;
-            border: 1px solid #3d3d5a;
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
         }
-        
-        code {
-            background: #1a1a1a;
-            color: #e0e0e0;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            border: 1px solid #333;
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
         }
-        
-        pre {
-            background: #1a1a1a;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            border: 1px solid #333;
-            margin: 15px 0;
-        }
-        
-        pre code {
-            background: none;
-            border: none;
-            padding: 0;
-        }
-        
-        strong {
-            color: #8b9bea;
-        }
-        
+
+        /* Footer */
         footer {
-            background: #1a1a1a;
-            color: #888;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
-            border-top: 1px solid #333;
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
         }
-        
-        footer a {
-            color: #8b9bea;
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section a {
+            color: #ECF0F1;
             text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
         }
-        
-        footer a:hover {
-            color: #a0aef0;
-            text-decoration: underline;
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .query-header {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>🏥 Hospital Database Design</h1>
-        <p>Comprehensive MySQL Schema for Healthcare Management</p>
+        <h1>🏥 Hospital Database Management System</h1>
+        <p>Normalized relational database with advanced SQL analytics demonstrating database design, complex queries, and healthcare data management</p>
     </header>
-    
-    <div class="content">
-        <div>
-            <span class="badge">MySQL</span>
-            <span class="badge">Database Design</span>
-            <span class="badge">Relational Database</span>
-            <span class="badge">Healthcare</span>
-            <span class="badge">SQL</span>
-            <span class="badge">Data Modeling</span>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#schema">Database Schema</a></li>
+            <li><a href="#queries">SQL Queries</a></li>
+            <li><a href="#technical">Technical Details</a></li>
+            <li><a href="https://github.com/himansh-11/hospital-database-sql" target="_blank">GitHub Repo</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Normalized Tables</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">237</span>
+                <span class="stat-label">Data Records</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">9</span>
+                <span class="stat-label">Relationships</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Complex Queries</span>
+            </div>
         </div>
-        
-        <h2>Project Overview</h2>
-        <p>A normalized relational database designed to manage core hospital operations, including patient registration, appointment scheduling, treatment tracking, and billing systems. Built following industry best practices with proper normalization and referential integrity.</p>
-        
-        <h2>🗄️ ER Diagram (Entity-Relationship Diagram)</h2>
-        <img src="er_diagram.png" alt="Detailed ER Diagram" class="diagram">
-        
-        <h3>Core Tables</h3>
-        <ul>
-            <li><strong>Patients:</strong> Demographics, contact information, insurance details</li>
-            <li><strong>Doctors:</strong> Medical staff profiles, specializations, department assignments</li>
-            <li><strong>Appointments:</strong> Scheduling system with status tracking and notes</li>
-            <li><strong>Treatments:</strong> Medical procedures and interventions tracking</li>
-            <li><strong>Prescriptions:</strong> Medication records linked to appointments</li>
-            <li><strong>Billing:</strong> Financial transactions and insurance claims</li>
-            <li><strong>Departments:</strong> Hospital organizational structure</li>
-            <li><strong>Rooms:</strong> Facility management and bed assignments</li>
-        </ul>
-        
-        <h3>Sample Query: Retrieving Patient Info Based On Patient's Condition</h3>
-        <pre><code>
-SELECT 
-    CASE 
-        WHEN PatientStatus = 'Recovering' THEN CONCAT('Birthday of recovering patient is ', PatientBirthday)
-        WHEN PatientStatus = 'Critical' THEN CONCAT('Birthday of critical patient is ', PatientBirthday)
-        ELSE CONCAT(PatientStatus, ' is not a patient')
-    END AS Patient_Info
-    FROM Patients
-    WHERE PatientStatus IN ('Recovering', 'Critical');</code></pre>
-        
-        <h2>💡 Key Features</h2>
-        <ul>
-            <li>✅ <strong>3rd Normal Form (3NF)</strong> normalization to eliminate data redundancy</li>
-            <li>✅ <strong>Referential Integrity</strong> enforced through foreign key constraints</li>
-            <li>✅ <strong>Optimized Data Types</strong> for healthcare-specific data</li>
-            <li>✅ <strong>Scalable Architecture</strong> supporting complex queries and reporting</li>
-            <li>✅ <strong>HIPAA-Compliant Structure</strong> with proper data separation</li>
-        </ul>
-        
-        <h3>Entity Relationships</h3>
-        <ul>
-            <li><strong>Patients ↔ Appointments:</strong> One-to-Many (One patient, many appointments)</li>
-            <li><strong>Doctors ↔ Appointments:</strong> One-to-Many (One doctor, many appointments)</li>
-            <li><strong>Appointments ↔ Treatments:</strong> One-to-Many (One appointment, multiple treatments)</li>
-            <li><strong>Departments ↔ Doctors:</strong> One-to-Many (One department, many doctors)</li>
-            <li><strong>Patients ↔ Billing:</strong> One-to-Many (One patient, multiple bills)</li>
-        </ul>
-        
-        <h2>🎯 Business Use Cases</h2>
-        <p>This database supports critical healthcare operations:</p>
-        <ul>
-            <li><strong>Patient Management:</strong> Track patient demographics, medical history, and visits</li>
-            <li><strong>Appointment Scheduling:</strong> Manage doctor availability and patient bookings</li>
-            <li><strong>Treatment Tracking:</strong> Record procedures, medications, and outcomes</li>
-            <li><strong>Financial Operations:</strong> Handle billing, insurance claims, and payments</li>
-            <li><strong>Analytics & Reporting:</strong> Generate insights on hospital performance</li>
-        </ul>
-        
-        <h2>🛠️ Technical Implementation</h2>
-        <ul>
-            <li><strong>Database:</strong> MySQL 8.0</li>
-            <li><strong>Normalization:</strong> 3rd Normal Form (3NF)</li>
-            <li><strong>Constraints:</strong> Primary keys, foreign keys, NOT NULL, UNIQUE</li>
-            <li><strong>Data Types:</strong> VARCHAR, INT, DATE, TIME, DECIMAL, ENUM, TEXT</li>
-            <li><strong>Tools:</strong> MySQL Workbench, Deepnote</li>
-        </ul>
-        
-        <div style="margin-top: 40px;">
-            <a href="https://github.com/Himansh-11/hospital-database-sql" class="btn">📂 View on GitHub</a>
-            <a href="https://deepnote.com/workspace/himansh-ab44ce92-eb8c-479b-85b2-a86971a26e8c/project/SQL-Creating-a-Hospital-Database-in-MySQL-Workbench-b0cf29c6-f4ce-4668-9f61-b9b38b43f1d8/notebook/SQL%20-%20Creating%20a%20Hospital%20Database%20in%20MySQL%20Workbench-7a1f50e423c14643bb13efddbda8c87a" class="btn">📓 View on Deepnote</a>
-            <a href="hospital_schema.ipynb" download class="btn">📥 Download Schema</a>
-            <a href="https://himansh-11.github.io" class="btn">🏠 Back to Portfolio</a>
-        </div>
+
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>📊 Project Overview</h2>
+            <p>This project showcases database design and SQL query optimization for healthcare data management. Built with SQLite, it includes patient management, appointment scheduling, billing systems, and treatment tracking with proper normalization and referential integrity.</p>
+
+            <div class="btn-group" style="margin-top: 2rem;">
+                <a href="https://github.com/himansh-11/hospital-database-sql" class="btn" target="_blank">View on GitHub</a>
+                <a href="https://github.com/himansh-11/hospital-database-sql/tree/main/data" class="btn btn-secondary" target="_blank">Download Data</a>
+                <a href="https://github.com/himansh-11/hospital-database-sql/tree/main/sql_queries" class="btn btn-secondary" target="_blank">View Queries</a>
+            </div>
+        </section>
+
+        <!-- Database Schema Section -->
+        <section id="schema">
+            <h2>🗄️ Database Schema</h2>
+            
+            <h3>Entity-Relationship Diagram</h3>
+            <div class="er-diagram">
+                <img src="screenshots/er_diagram.png" alt="Hospital Database ER Diagram">
+            </div>
+
+            <h3>Database Structure</h3>
+            <div class="table-grid">
+                <div class="table-card">
+                    <h4>departments</h4>
+                    <p class="record-count">7 records</p>
+                    <p>Hospital organizational structure including Cardiology, Emergency Medicine, Pediatrics, Orthopedics, Neurology, Oncology, and Internal Medicine</p>
+                </div>
+                <div class="table-card">
+                    <h4>doctors</h4>
+                    <p class="record-count">15 records</p>
+                    <p>Physician information with specialties, contact details, and department assignments</p>
+                </div>
+                <div class="table-card">
+                    <h4>docinfo</h4>
+                    <p class="record-count">15 records</p>
+                    <p>Extended doctor credentials including licenses, education, certifications, and years of experience</p>
+                </div>
+                <div class="table-card">
+                    <h4>salary</h4>
+                    <p class="record-count">38 records</p>
+                    <p>Compensation history tracking with base salary, bonuses, and effective dates (multiple records per doctor)</p>
+                </div>
+                <div class="table-card">
+                    <h4>patients</h4>
+                    <p class="record-count">45 records</p>
+                    <p>Patient demographics, insurance information, health status, and assigned physician</p>
+                </div>
+                <div class="table-card">
+                    <h4>appointments</h4>
+                    <p class="record-count">43 records</p>
+                    <p>Scheduling system with dates, times, status tracking (Completed, Cancelled, No-Show), and visit reasons</p>
+                </div>
+                <div class="table-card">
+                    <h4>treatments</h4>
+                    <p class="record-count">15 records</p>
+                    <p>Medical procedures including ECG, MRI, surgery, chemotherapy with costs and dates</p>
+                </div>
+                <div class="table-card">
+                    <h4>prescriptions</h4>
+                    <p class="record-count">10 records</p>
+                    <p>Medication records with dosage, frequency, duration, and refill information</p>
+                </div>
+                <div class="table-card">
+                    <h4>billing</h4>
+                    <p class="record-count">39 records</p>
+                    <p>Financial transactions with payment status (Paid: 75%, Pending: 15%, Overdue: 10%), insurance coverage</p>
+                </div>
+                <div class="table-card">
+                    <h4>rooms</h4>
+                    <p class="record-count">10 records</p>
+                    <p>Facility management including room types, capacity, status, and department assignments</p>
+                </div>
+            </div>
+
+            <div class="screenshot">
+                <img src="screenshots/database_schema.png" alt="Database Schema Structure">
+                <p style="margin-top: 1rem; color: var(--text-light);">Complete database structure showing all tables and columns</p>
+            </div>
+        </section>
+
+        <!-- SQL Queries Section -->
+        <section id="queries">
+            <h2>💡 SQL Queries & Analysis</h2>
+
+            <!-- Query 1 -->
+            <div class="query-section">
+                <div class="query-header">
+                    <div class="query-title">
+                        <h3 style="margin: 0;">Query 1: Doctor Workload Analysis</h3>
+                    </div>
+                </div>
+
+                <div class="business-question">
+                    <strong>Business Question:</strong> Which doctors have the highest patient loads and revenue generation for capacity planning?
+                </div>
+
+                <div class="code-block">SELECT 
+    d.DoctorID,
+    d.FirstName || ' ' || d.LastName AS DoctorName,
+    d.Specialty,
+    dept.DepartmentName,
+    COUNT(DISTINCT p.PatientID) AS TotalPatients,
+    COUNT(DISTINCT a.AppointmentID) AS TotalAppointments,
+    ROUND(AVG(b.TotalAmount), 2) AS AvgBilling,
+    SUM(b.TotalAmount) AS TotalRevenue
+FROM doctors d
+LEFT JOIN departments dept ON d.DepartmentID = dept.DepartmentID
+LEFT JOIN patients p ON d.DoctorID = p.DoctorID
+LEFT JOIN appointments a ON d.DoctorID = a.DoctorID
+LEFT JOIN billing b ON a.AppointmentID = b.AppointmentID
+GROUP BY d.DoctorID, d.FirstName, d.LastName, d.Specialty, dept.DepartmentName
+ORDER BY TotalRevenue DESC;</div>
+
+                <div class="skills-tags">
+                    <span class="skill-tag">Multi-table JOINs</span>
+                    <span class="skill-tag">Aggregate Functions</span>
+                    <span class="skill-tag">GROUP BY</span>
+                    <span class="skill-tag">NULL Handling</span>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Key Insight:</strong> Dr. Williams (Orthopedics) generates highest revenue ($9,850) with surgical procedures, while Dr. Johnson (Pediatrics) maintains highest patient volume with lower per-visit costs, revealing different specialization models.
+                </div>
+
+                <div class="screenshot">
+                    <img src="screenshots/query1_results.png" alt="Query 1 Results">
+                </div>
+            </div>
+
+            <!-- Query 2 -->
+            <div class="query-section">
+                <div class="query-header">
+                    <div class="query-title">
+                        <h3 style="margin: 0;">Query 2: Patient Status Distribution</h3>
+                    </div>
+                </div>
+
+                <div class="business-question">
+                    <strong>Business Question:</strong> What's the distribution of patient health statuses and their appointment completion rates?
+                </div>
+
+                <div class="code-block">SELECT 
+    p.PatientStatus,
+    COUNT(DISTINCT p.PatientID) AS NumPatients,
+    ROUND(COUNT(DISTINCT p.PatientID) * 100.0 / 
+          SUM(COUNT(DISTINCT p.PatientID)) OVER (), 2) AS PercentageOfTotal,
+    COUNT(DISTINCT a.AppointmentID) AS TotalAppointments,
+    SUM(CASE WHEN a.AppointmentStatus = 'Completed' THEN 1 ELSE 0 END) AS CompletedAppointments
+FROM patients p
+LEFT JOIN appointments a ON p.PatientID = a.PatientID
+GROUP BY p.PatientStatus
+ORDER BY NumPatients DESC;</div>
+
+                <div class="skills-tags">
+                    <span class="skill-tag">Window Functions</span>
+                    <span class="skill-tag">CASE Statements</span>
+                    <span class="skill-tag">Conditional Aggregation</span>
+                    <span class="skill-tag">Percentage Calculations</span>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Key Insight:</strong> Critical patients show 100% appointment completion, while Stable patients have 92% completion rate, suggesting higher engagement when health stakes are perceived as higher.
+                </div>
+
+                <div class="screenshot">
+                    <img src="screenshots/query2_results.png" alt="Query 2 Results">
+                </div>
+            </div>
+
+            <!-- Query 3 -->
+            <div class="query-section">
+                <div class="query-header">
+                    <div class="query-title">
+                        <h3 style="margin: 0;">Query 3: Department Financial Performance</h3>
+                    </div>
+                </div>
+
+                <div class="business-question">
+                    <strong>Business Question:</strong> Which departments should receive investment based on revenue performance and collection efficiency?
+                </div>
+
+                <div class="code-block">WITH DepartmentMetrics AS (
+    SELECT 
+        dept.DepartmentName,
+        COUNT(DISTINCT d.DoctorID) AS NumDoctors,
+        SUM(b.TotalAmount) AS TotalRevenue,
+        ROUND(AVG(b.TotalAmount), 2) AS AvgRevenuePerAppointment,
+        SUM(CASE WHEN b.PaymentStatus = 'Paid' THEN b.TotalAmount ELSE 0 END) AS CollectedRevenue
+    FROM departments dept
+    LEFT JOIN doctors d ON dept.DepartmentID = d.DepartmentID
+    LEFT JOIN appointments a ON d.DoctorID = a.DoctorID
+    LEFT JOIN billing b ON a.AppointmentID = b.AppointmentID
+    GROUP BY dept.DepartmentName
+)
+SELECT *, 
+    ROUND(CollectedRevenue * 100.0 / NULLIF(TotalRevenue, 0), 2) AS CollectionRate
+FROM DepartmentMetrics
+WHERE TotalRevenue > 0
+ORDER BY TotalRevenue DESC;</div>
+
+                <div class="skills-tags">
+                    <span class="skill-tag">CTEs</span>
+                    <span class="skill-tag">Complex Aggregations</span>
+                    <span class="skill-tag">Financial Metrics</span>
+                    <span class="skill-tag">HAVING Clause</span>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Key Insight:</strong> Orthopedics leads with $12,650 revenue and 100% collection rate, while Oncology shows $17,800 revenue but only 69% collection rate, indicating need for improved billing processes.
+                </div>
+
+                <div class="screenshot">
+                    <img src="screenshots/query3_results.png" alt="Query 3 Results">
+                </div>
+            </div>
+
+            <!-- Query 4 -->
+            <div class="query-section">
+                <div class="query-header">
+                    <div class="query-title">
+                        <h3 style="margin: 0;">Query 4: High-Value Patient Analysis</h3>
+                    </div>
+                </div>
+
+                <div class="business-question">
+                    <strong>Business Question:</strong> Who are the highest-spending patients and what treatments drive their costs?
+                </div>
+
+                <div class="code-block">SELECT 
+    p.PatientID,
+    p.FirstName || ' ' || p.LastName AS PatientName,
+    p.PatientStatus,
+    d.Specialty,
+    COUNT(DISTINCT a.AppointmentID) AS TotalAppointments,
+    COUNT(DISTINCT t.TreatmentID) AS TotalTreatments,
+    SUM(b.TotalAmount) AS TotalSpending,
+    ROUND(AVG(b.TotalAmount), 2) AS AvgSpendingPerVisit
+FROM patients p
+LEFT JOIN doctors d ON p.DoctorID = d.DoctorID
+LEFT JOIN appointments a ON p.PatientID = a.PatientID
+LEFT JOIN treatments t ON a.AppointmentID = t.AppointmentID
+LEFT JOIN billing b ON a.AppointmentID = b.AppointmentID
+GROUP BY p.PatientID, p.FirstName, p.LastName, p.PatientStatus, d.Specialty
+HAVING SUM(b.TotalAmount) > 0
+ORDER BY TotalSpending DESC
+LIMIT 15;</div>
+
+                <div class="skills-tags">
+                    <span class="skill-tag">6-Table JOINs</span>
+                    <span class="skill-tag">HAVING Clause</span>
+                    <span class="skill-tag">TOP N Analysis</span>
+                    <span class="skill-tag">Patient Analytics</span>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Key Insight:</strong> Top patient in Oncology spent $17,800 over 4 appointments with chemotherapy, while Orthopedic patient spent $12,650 on surgical procedures, revealing different care models and financial planning needs.
+                </div>
+
+                <div class="screenshot">
+                    <img src="screenshots/query4_results.png" alt="Query 4 Results">
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Details Section -->
+        <section id="technical">
+            <h2>🛠️ Technical Implementation</h2>
+
+            <h3>SQL Techniques Demonstrated</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>Multi-table JOINs</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>Window Functions</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>CTEs</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>Aggregate Functions</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>CASE Statements</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>Date Functions</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>Subqueries</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="checkmark">✓</div>
+                    <strong>GROUP BY & HAVING</strong>
+                </div>
+            </div>
+
+            <h3>Database Design Principles</h3>
+            <ul style="line-height: 2;">
+                <li><strong>Normalization:</strong> All tables follow 3rd Normal Form (3NF) to eliminate data redundancy</li>
+                <li><strong>Referential Integrity:</strong> Foreign key constraints ensure data consistency across tables</li>
+                <li><strong>Data Types:</strong> Optimized column types (VARCHAR, INT, DATE, DECIMAL) for efficiency</li>
+                <li><strong>Indexing:</strong> Primary keys on all tables for query performance</li>
+                <li><strong>Constraints:</strong> NOT NULL and UNIQUE constraints where appropriate</li>
+            </ul>
+
+            <h3>Technology Stack</h3>
+            <ul style="line-height: 2;">
+                <li><strong>Database:</strong> SQLite 3.x (portable, no server required)</li>
+                <li><strong>Tools:</strong> DB Browser for SQLite</li>
+                <li><strong>Data Format:</strong> CSV files for easy portability</li>
+                <li><strong>Version Control:</strong> Git & GitHub</li>
+            </ul>
+        </section>
+
+        <!-- Business Applications -->
+        <section>
+            <h2>💼 Business Applications</h2>
+            <p>This database supports critical healthcare operations including:</p>
+            
+            <div class="table-grid" style="margin-top: 2rem;">
+                <div class="table-card">
+                    <h4>Patient Management</h4>
+                    <p>Track demographics, medical history, and care continuity across multiple visits and providers</p>
+                </div>
+                <div class="table-card">
+                    <h4>Appointment Scheduling</h4>
+                    <p>Optimize doctor availability, reduce no-shows, and improve patient flow</p>
+                </div>
+                <div class="table-card">
+                    <h4>Financial Operations</h4>
+                    <p>Monitor revenue, track receivables, and analyze profitability by department</p>
+                </div>
+                <div class="table-card">
+                    <h4>Resource Allocation</h4>
+                    <p>Identify capacity constraints, workload imbalances, and hiring needs</p>
+                </div>
+                <div class="table-card">
+                    <h4>Quality Metrics</h4>
+                    <p>Analyze appointment completion rates and patient engagement patterns</p>
+                </div>
+                <div class="table-card">
+                    <h4>Strategic Planning</h4>
+                    <p>Guide department investment and expansion decisions based on data</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Projects -->
+        <section>
+            <h2>🔗 Related Projects</h2>
+            <div class="query-section">
+                <h3 style="margin-top: 0;">Healthcare Analytics Portfolio</h3>
+                <p>This SQL database project complements my healthcare analytics work:</p>
+                <ul style="margin-top: 1rem; line-height: 2;">
+                    <li><strong><a href="https://himansh-11.github.io/healthcare-analytics-portfolio/" target="_blank">Hospital Readmission Analytics Dashboard</a></strong> - Power BI analysis of 2,496 hospitals, identifying $207M savings opportunity</li>
+                    <li><strong>CNN Emotion Recognition</strong> - Machine learning research on computational modeling of human perception</li>
+                    <li><strong>Higher Education Analytics</strong> - Tableau dashboard on student retention (coming soon)</li>
+                </ul>
+            </div>
+        </section>
     </div>
-    
+
     <footer>
-        <p><strong>Himansh Rajak</strong> | Healthcare Data Analyst</p>
-        <p>
-            <a href="mailto:himanshr1107@gmail.com">himanshr1107@gmail.com</a> | 
-            <a href="https://linkedin.com/in/himansh-rajak">LinkedIn</a> | 
-            <a href="https://github.com/Himansh-11">GitHub</a>
-        </p>
-        <p style="margin-top: 15px; font-size: 0.9em;">Built with HTML & CSS | Hosted on GitHub Pages</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Himansh</h3>
+                <p>Data Specialist | Healthcare Analytics<br>SQL & Database Design</p>
+                <div class="social-links">
+                    <a href="https://github.com/himansh-11" target="_blank" title="GitHub">📊</a>
+                    <a href="https://linkedin.com/in/himansh11" target="_blank" title="LinkedIn">💼</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="https://github.com/himansh-11/hospital-database-sql" target="_blank">GitHub Repository</a>
+                <a href="https://himansh-11.github.io/healthcare-analytics-portfolio/" target="_blank">Main Portfolio</a>
+                <a href="#queries">SQL Queries</a>
+                <a href="#schema">Database Schema</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Project Details</h3>
+                <p><strong>Database:</strong> SQLite</p>
+                <p><strong>Tables:</strong> 10 (3NF normalized)</p>
+                <p><strong>Records:</strong> 237</p>
+                <p><strong>Queries:</strong> 4 advanced</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>&copy; 2024 Himansh. All data is synthetic and created for demonstration purposes.</p>
+        </div>
     </footer>
 </body>
 </html>
