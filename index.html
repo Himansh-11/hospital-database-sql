@@ -13,36 +13,81 @@
         }
 
         :root {
-            --primary-color: #2E86AB;
-            --secondary-color: #A23B72;
-            --accent-color: #F18F01;
-            --text-dark: #2C3E50;
-            --text-light: #7F8C8D;
-            --bg-light: #F8F9FA;
-            --border-color: #E1E8ED;
-            --success-color: #27AE60;
+            /* Dark Theme Colors */
+            --primary-color: #60A5FA;
+            --primary-dark: #3B82F6;
+            --secondary-color: #A78BFA;
+            --accent-color: #FBBF24;
+            --success-color: #34D399;
+            
+            /* Background Colors */
+            --bg-dark: #0F172A;
+            --bg-darker: #020617;
+            --bg-card: #1E293B;
+            --bg-card-hover: #334155;
+            
+            /* Text Colors */
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            
+            /* Code Colors */
+            --code-bg: #1A202C;
+            --code-keyword: #F472B6;
+            --code-function: #60A5FA;
+            --code-string: #34D399;
+            --code-comment: #64748B;
+            
+            /* Borders */
+            --border-color: #334155;
+            --border-light: #475569;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            --gradient-accent: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background: #fff;
+            color: var(--text-primary);
+            background: var(--bg-dark);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1a5f7a 100%);
+            background: var(--gradient-primary);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
         }
 
         header p {
@@ -50,16 +95,19 @@
             opacity: 0.95;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         /* Navigation */
         nav {
-            background: white;
+            background: var(--bg-darker);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         nav ul {
@@ -68,13 +116,16 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         nav a {
-            color: var(--text-dark);
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -97,30 +148,53 @@
         }
 
         .stat-card {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 8px;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
             text-align: center;
-            border: 2px solid var(--border-color);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         /* Section */
@@ -129,54 +203,74 @@
         }
 
         section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 0.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
         section h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem 0;
-            color: var(--text-dark);
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1.5rem 0;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 1rem 0;
         }
 
         /* ER Diagram */
         .er-diagram {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 8px;
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 12px;
             margin: 2rem 0;
             text-align: center;
+            border: 1px solid var(--border-color);
         }
 
         .er-diagram img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
-        /* Table Structure */
+        /* Table Grid */
         .table-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .table-card {
-            background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
 
         .table-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
             border-color: var(--primary-color);
         }
 
@@ -184,176 +278,283 @@
             color: var(--primary-color);
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .table-card .record-count {
-            color: var(--text-light);
+            color: var(--accent-color);
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: block;
         }
 
         .table-card p {
-            color: var(--text-dark);
+            color: var(--text-secondary);
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Query Section */
         .query-section {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border: 1px solid var(--border-color);
             border-left: 4px solid var(--primary-color);
         }
 
-        .query-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .query-title {
-            flex: 1;
+        .query-header h3 {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.8rem;
         }
 
         .business-question {
-            background: white;
-            padding: 1rem;
-            border-radius: 6px;
-            margin: 1rem 0;
+            background: var(--bg-darker);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
             border-left: 3px solid var(--accent-color);
         }
 
         .business-question strong {
             color: var(--accent-color);
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
+        .business-question p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Code Block - FIXED FORMATTING */
         .code-block {
-            background: #2C3E50;
-            color: #ECF0F1;
-            padding: 1.5rem;
-            border-radius: 6px;
+            background: var(--code-bg);
+            color: var(--text-secondary);
+            padding: 2rem;
+            border-radius: 8px;
             overflow-x: auto;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
+            margin: 2rem 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.8;
+            border: 1px solid var(--border-color);
+            white-space: pre;
+            tab-size: 4;
         }
 
+        .code-block::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .code-block::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+            border-radius: 4px;
+        }
+
+        .code-block::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+
+        .code-block::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        /* Skills Tags */
         .skills-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.6rem;
+            margin: 1.5rem 0;
         }
 
         .skill-tag {
-            background: var(--primary-color);
+            background: var(--gradient-primary);
             color: white;
-            padding: 0.3rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
         }
 
+        /* Insight Box */
         .insight-box {
-            background: #FFF9E6;
+            background: rgba(251, 191, 36, 0.1);
             border-left: 4px solid var(--accent-color);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
         }
 
         .insight-box strong {
             color: var(--accent-color);
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
+        .insight-box p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Screenshot */
         .screenshot {
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             text-align: center;
         }
 
         .screenshot img {
             max-width: 100%;
             height: auto;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
-        /* Tech Stack */
+        .screenshot p {
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Tech Grid */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
 
         .tech-item {
-            background: white;
-            border: 2px solid var(--border-color);
-            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
             text-align: center;
-            border-radius: 6px;
-            transition: all 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .tech-item:hover {
             border-color: var(--success-color);
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(52, 211, 153, 0.15);
         }
 
         .checkmark {
             color: var(--success-color);
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .tech-item strong {
+            color: var(--text-primary);
+            font-size: 0.95rem;
         }
 
         /* Buttons */
         .btn-group {
             display: flex;
             gap: 1rem;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
             flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--primary-color);
+            padding: 0.9rem 2.5rem;
+            background: var(--gradient-primary);
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
         }
 
         .btn:hover {
-            background: #1a5f7a;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46, 134, 171, 0.3);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--primary-color);
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-light);
+            border-color: var(--primary-color);
+            background: var(--bg-card-hover);
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        thead {
+            background: var(--gradient-primary);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            color: white;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        tr:hover {
+            background: var(--bg-card-hover);
         }
 
         /* Footer */
         footer {
-            background: var(--text-dark);
-            color: white;
+            background: var(--bg-darker);
+            color: var(--text-secondary);
             padding: 3rem 2rem;
-            margin-top: 4rem;
+            margin-top: 5rem;
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-content {
@@ -366,11 +567,12 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: white;
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         .footer-section a {
-            color: #ECF0F1;
+            color: var(--text-secondary);
             text-decoration: none;
             display: block;
             margin: 0.5rem 0;
@@ -381,26 +583,17 @@
             color: var(--accent-color);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+        .footer-section p {
+            margin: 0.3rem 0;
+            color: var(--text-muted);
         }
 
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
         }
 
         /* Responsive */
@@ -418,11 +611,20 @@
             }
 
             section h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
-            .query-header {
-                flex-direction: column;
+            section h3 {
+                font-size: 1.4rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .code-block {
+                font-size: 0.8rem;
+                padding: 1.5rem;
             }
         }
     </style>
@@ -469,7 +671,7 @@
             <h2>📊 Project Overview</h2>
             <p>This project showcases database design and SQL query optimization for healthcare data management. Built with SQLite, it includes patient management, appointment scheduling, billing systems, and treatment tracking with proper normalization and referential integrity.</p>
 
-            <div class="btn-group" style="margin-top: 2rem;">
+            <div class="btn-group">
                 <a href="https://github.com/himansh-11/hospital-database-sql" class="btn" target="_blank">View on GitHub</a>
                 <a href="https://github.com/himansh-11/hospital-database-sql/tree/main/data" class="btn btn-secondary" target="_blank">Download Data</a>
                 <a href="https://github.com/himansh-11/hospital-database-sql/tree/main/sql_queries" class="btn btn-secondary" target="_blank">View Queries</a>
@@ -486,62 +688,71 @@
             </div>
 
             <h3>Database Structure</h3>
-            <div class="table-grid">
-                <div class="table-card">
-                    <h4>departments</h4>
-                    <p class="record-count">7 records</p>
-                    <p>Hospital organizational structure including Cardiology, Emergency Medicine, Pediatrics, Orthopedics, Neurology, Oncology, and Internal Medicine</p>
-                </div>
-                <div class="table-card">
-                    <h4>doctors</h4>
-                    <p class="record-count">15 records</p>
-                    <p>Physician information with specialties, contact details, and department assignments</p>
-                </div>
-                <div class="table-card">
-                    <h4>docinfo</h4>
-                    <p class="record-count">15 records</p>
-                    <p>Extended doctor credentials including licenses, education, certifications, and years of experience</p>
-                </div>
-                <div class="table-card">
-                    <h4>salary</h4>
-                    <p class="record-count">38 records</p>
-                    <p>Compensation history tracking with base salary, bonuses, and effective dates (multiple records per doctor)</p>
-                </div>
-                <div class="table-card">
-                    <h4>patients</h4>
-                    <p class="record-count">45 records</p>
-                    <p>Patient demographics, insurance information, health status, and assigned physician</p>
-                </div>
-                <div class="table-card">
-                    <h4>appointments</h4>
-                    <p class="record-count">43 records</p>
-                    <p>Scheduling system with dates, times, status tracking (Completed, Cancelled, No-Show), and visit reasons</p>
-                </div>
-                <div class="table-card">
-                    <h4>treatments</h4>
-                    <p class="record-count">15 records</p>
-                    <p>Medical procedures including ECG, MRI, surgery, chemotherapy with costs and dates</p>
-                </div>
-                <div class="table-card">
-                    <h4>prescriptions</h4>
-                    <p class="record-count">10 records</p>
-                    <p>Medication records with dosage, frequency, duration, and refill information</p>
-                </div>
-                <div class="table-card">
-                    <h4>billing</h4>
-                    <p class="record-count">39 records</p>
-                    <p>Financial transactions with payment status (Paid: 75%, Pending: 15%, Overdue: 10%), insurance coverage</p>
-                </div>
-                <div class="table-card">
-                    <h4>rooms</h4>
-                    <p class="record-count">10 records</p>
-                    <p>Facility management including room types, capacity, status, and department assignments</p>
-                </div>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Table</th>
+                        <th>Records</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>departments</strong></td>
+                        <td>7</td>
+                        <td>Hospital organizational structure (Cardiology, Emergency, Pediatrics, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>doctors</strong></td>
+                        <td>15</td>
+                        <td>Physician information including specialty and contact details</td>
+                    </tr>
+                    <tr>
+                        <td><strong>docinfo</strong></td>
+                        <td>15</td>
+                        <td>Extended doctor credentials, licenses, and education history</td>
+                    </tr>
+                    <tr>
+                        <td><strong>salary</strong></td>
+                        <td>38</td>
+                        <td>Compensation records with historical tracking</td>
+                    </tr>
+                    <tr>
+                        <td><strong>patients</strong></td>
+                        <td>45</td>
+                        <td>Patient demographics, insurance, and health status</td>
+                    </tr>
+                    <tr>
+                        <td><strong>appointments</strong></td>
+                        <td>43</td>
+                        <td>Scheduling with status tracking (Completed, Cancelled, No-Show)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>treatments</strong></td>
+                        <td>15</td>
+                        <td>Medical procedures (ECG, MRI, Surgery, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>prescriptions</strong></td>
+                        <td>10</td>
+                        <td>Medication records with dosage and frequency</td>
+                    </tr>
+                    <tr>
+                        <td><strong>billing</strong></td>
+                        <td>39</td>
+                        <td>Financial transactions (Paid: 75%, Pending: 15%, Overdue: 10%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>rooms</strong></td>
+                        <td>10</td>
+                        <td>Facility management and bed assignments</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="screenshot">
                 <img src="screenshots/database_schema.png" alt="Database Schema Structure">
-                <p style="margin-top: 1rem; color: var(--text-light);">Complete database structure showing all tables and columns</p>
+                <p>Complete database structure showing all tables and columns</p>
             </div>
         </section>
 
@@ -552,13 +763,12 @@
             <!-- Query 1 -->
             <div class="query-section">
                 <div class="query-header">
-                    <div class="query-title">
-                        <h3 style="margin: 0;">Query 1: Doctor Workload Analysis</h3>
-                    </div>
+                    <h3>Query 1: Doctor Workload Analysis</h3>
                 </div>
 
                 <div class="business-question">
-                    <strong>Business Question:</strong> Which doctors have the highest patient loads and revenue generation for capacity planning?
+                    <strong>Business Question:</strong>
+                    <p>Which doctors have the highest patient loads and revenue generation for capacity planning?</p>
                 </div>
 
                 <div class="code-block">SELECT 
@@ -586,7 +796,8 @@ ORDER BY TotalRevenue DESC;</div>
                 </div>
 
                 <div class="insight-box">
-                    <strong>Key Insight:</strong> Dr. Williams (Orthopedics) generates highest revenue ($9,850) with surgical procedures, while Dr. Johnson (Pediatrics) maintains highest patient volume with lower per-visit costs, revealing different specialization models.
+                    <strong>Key Insight:</strong>
+                    <p>Dr. Williams (Orthopedics) generates highest revenue ($9,850) with surgical procedures, while Dr. Johnson (Pediatrics) maintains highest patient volume with lower per-visit costs, revealing different specialization models.</p>
                 </div>
 
                 <div class="screenshot">
@@ -597,13 +808,12 @@ ORDER BY TotalRevenue DESC;</div>
             <!-- Query 2 -->
             <div class="query-section">
                 <div class="query-header">
-                    <div class="query-title">
-                        <h3 style="margin: 0;">Query 2: Patient Status Distribution</h3>
-                    </div>
+                    <h3>Query 2: Patient Status Distribution</h3>
                 </div>
 
                 <div class="business-question">
-                    <strong>Business Question:</strong> What's the distribution of patient health statuses and their appointment completion rates?
+                    <strong>Business Question:</strong>
+                    <p>What's the distribution of patient health statuses and their appointment completion rates?</p>
                 </div>
 
                 <div class="code-block">SELECT 
@@ -626,7 +836,8 @@ ORDER BY NumPatients DESC;</div>
                 </div>
 
                 <div class="insight-box">
-                    <strong>Key Insight:</strong> Critical patients show 100% appointment completion, while Stable patients have 92% completion rate, suggesting higher engagement when health stakes are perceived as higher.
+                    <strong>Key Insight:</strong>
+                    <p>Critical patients show 100% appointment completion, while Stable patients have 92% completion rate, suggesting higher engagement when health stakes are perceived as higher.</p>
                 </div>
 
                 <div class="screenshot">
@@ -637,13 +848,12 @@ ORDER BY NumPatients DESC;</div>
             <!-- Query 3 -->
             <div class="query-section">
                 <div class="query-header">
-                    <div class="query-title">
-                        <h3 style="margin: 0;">Query 3: Department Financial Performance</h3>
-                    </div>
+                    <h3>Query 3: Department Financial Performance</h3>
                 </div>
 
                 <div class="business-question">
-                    <strong>Business Question:</strong> Which departments should receive investment based on revenue performance and collection efficiency?
+                    <strong>Business Question:</strong>
+                    <p>Which departments should receive investment based on revenue performance and collection efficiency?</p>
                 </div>
 
                 <div class="code-block">WITH DepartmentMetrics AS (
@@ -652,14 +862,16 @@ ORDER BY NumPatients DESC;</div>
         COUNT(DISTINCT d.DoctorID) AS NumDoctors,
         SUM(b.TotalAmount) AS TotalRevenue,
         ROUND(AVG(b.TotalAmount), 2) AS AvgRevenuePerAppointment,
-        SUM(CASE WHEN b.PaymentStatus = 'Paid' THEN b.TotalAmount ELSE 0 END) AS CollectedRevenue
+        SUM(CASE WHEN b.PaymentStatus = 'Paid' 
+                 THEN b.TotalAmount ELSE 0 END) AS CollectedRevenue
     FROM departments dept
     LEFT JOIN doctors d ON dept.DepartmentID = d.DepartmentID
     LEFT JOIN appointments a ON d.DoctorID = a.DoctorID
     LEFT JOIN billing b ON a.AppointmentID = b.AppointmentID
     GROUP BY dept.DepartmentName
 )
-SELECT *, 
+SELECT 
+    *,
     ROUND(CollectedRevenue * 100.0 / NULLIF(TotalRevenue, 0), 2) AS CollectionRate
 FROM DepartmentMetrics
 WHERE TotalRevenue > 0
@@ -673,7 +885,8 @@ ORDER BY TotalRevenue DESC;</div>
                 </div>
 
                 <div class="insight-box">
-                    <strong>Key Insight:</strong> Orthopedics leads with $12,650 revenue and 100% collection rate, while Oncology shows $17,800 revenue but only 69% collection rate, indicating need for improved billing processes.
+                    <strong>Key Insight:</strong>
+                    <p>Orthopedics leads with $12,650 revenue and 100% collection rate, while Oncology shows $17,800 revenue but only 69% collection rate, indicating need for improved billing processes.</p>
                 </div>
 
                 <div class="screenshot">
@@ -684,13 +897,12 @@ ORDER BY TotalRevenue DESC;</div>
             <!-- Query 4 -->
             <div class="query-section">
                 <div class="query-header">
-                    <div class="query-title">
-                        <h3 style="margin: 0;">Query 4: High-Value Patient Analysis</h3>
-                    </div>
+                    <h3>Query 4: High-Value Patient Analysis</h3>
                 </div>
 
                 <div class="business-question">
-                    <strong>Business Question:</strong> Who are the highest-spending patients and what treatments drive their costs?
+                    <strong>Business Question:</strong>
+                    <p>Who are the highest-spending patients and what treatments drive their costs?</p>
                 </div>
 
                 <div class="code-block">SELECT 
@@ -720,7 +932,8 @@ LIMIT 15;</div>
                 </div>
 
                 <div class="insight-box">
-                    <strong>Key Insight:</strong> Top patient in Oncology spent $17,800 over 4 appointments with chemotherapy, while Orthopedic patient spent $12,650 on surgical procedures, revealing different care models and financial planning needs.
+                    <strong>Key Insight:</strong>
+                    <p>Top patient in Oncology spent $17,800 over 4 appointments with chemotherapy, while Orthopedic patient spent $12,650 on surgical procedures, revealing different care models and financial planning needs.</p>
                 </div>
 
                 <div class="screenshot">
@@ -736,41 +949,41 @@ LIMIT 15;</div>
             <h3>SQL Techniques Demonstrated</h3>
             <div class="tech-grid">
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>Multi-table JOINs</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>Window Functions</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>CTEs</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>Aggregate Functions</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>CASE Statements</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>Date Functions</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>Subqueries</strong>
                 </div>
                 <div class="tech-item">
-                    <div class="checkmark">✓</div>
+                    <span class="checkmark">✓</span>
                     <strong>GROUP BY & HAVING</strong>
                 </div>
             </div>
 
             <h3>Database Design Principles</h3>
-            <ul style="line-height: 2;">
+            <ul>
                 <li><strong>Normalization:</strong> All tables follow 3rd Normal Form (3NF) to eliminate data redundancy</li>
                 <li><strong>Referential Integrity:</strong> Foreign key constraints ensure data consistency across tables</li>
                 <li><strong>Data Types:</strong> Optimized column types (VARCHAR, INT, DATE, DECIMAL) for efficiency</li>
@@ -779,7 +992,7 @@ LIMIT 15;</div>
             </ul>
 
             <h3>Technology Stack</h3>
-            <ul style="line-height: 2;">
+            <ul>
                 <li><strong>Database:</strong> SQLite 3.x (portable, no server required)</li>
                 <li><strong>Tools:</strong> DB Browser for SQLite</li>
                 <li><strong>Data Format:</strong> CSV files for easy portability</li>
@@ -792,7 +1005,7 @@ LIMIT 15;</div>
             <h2>💼 Business Applications</h2>
             <p>This database supports critical healthcare operations including:</p>
             
-            <div class="table-grid" style="margin-top: 2rem;">
+            <div class="table-grid">
                 <div class="table-card">
                     <h4>Patient Management</h4>
                     <p>Track demographics, medical history, and care continuity across multiple visits and providers</p>
@@ -826,8 +1039,8 @@ LIMIT 15;</div>
             <div class="query-section">
                 <h3 style="margin-top: 0;">Healthcare Analytics Portfolio</h3>
                 <p>This SQL database project complements my healthcare analytics work:</p>
-                <ul style="margin-top: 1rem; line-height: 2;">
-                    <li><strong><a href="https://himansh-11.github.io/healthcare-analytics-portfolio/" target="_blank">Hospital Readmission Analytics Dashboard</a></strong> - Power BI analysis of 2,496 hospitals, identifying $207M savings opportunity</li>
+                <ul style="margin-top: 1rem;">
+                    <li><strong><a href="https://himansh-11.github.io/healthcare-analytics-portfolio/" target="_blank" style="color: var(--primary-color);">Hospital Readmission Analytics Dashboard</a></strong> - Power BI analysis of 2,496 hospitals, identifying $207M savings opportunity</li>
                     <li><strong>CNN Emotion Recognition</strong> - Machine learning research on computational modeling of human perception</li>
                     <li><strong>Higher Education Analytics</strong> - Tableau dashboard on student retention (coming soon)</li>
                 </ul>
@@ -838,12 +1051,9 @@ LIMIT 15;</div>
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Himansh</h3>
-                <p>Data Specialist | Healthcare Analytics<br>SQL & Database Design</p>
-                <div class="social-links">
-                    <a href="https://github.com/himansh-11" target="_blank" title="GitHub">📊</a>
-                    <a href="https://linkedin.com/in/himansh11" target="_blank" title="LinkedIn">💼</a>
-                </div>
+                <h3>Himansh Rajak</h3>
+                <p>Data Specialist | Healthcare Analytics</p>
+                <p>SQL & Database Design</p>
             </div>
 
             <div class="footer-section">
@@ -855,6 +1065,13 @@ LIMIT 15;</div>
             </div>
 
             <div class="footer-section">
+                <h3>Contact</h3>
+                <a href="mailto:himanshr1107@gmail.com">himanshr1107@gmail.com</a>
+                <a href="https://www.linkedin.com/in/himansh-rajak/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/himansh-11" target="_blank">GitHub</a>
+            </div>
+
+            <div class="footer-section">
                 <h3>Project Details</h3>
                 <p><strong>Database:</strong> SQLite</p>
                 <p><strong>Tables:</strong> 10 (3NF normalized)</p>
@@ -863,8 +1080,8 @@ LIMIT 15;</div>
             </div>
         </div>
         
-        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p>&copy; 2024 Himansh. All data is synthetic and created for demonstration purposes.</p>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Himansh. All data is synthetic and created for demonstration purposes.</p>
         </div>
     </footer>
 </body>
