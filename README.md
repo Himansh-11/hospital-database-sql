@@ -79,7 +79,7 @@ ORDER BY TotalRevenue DESC;
 
 **Skills Demonstrated:** Multi-table JOINs (4 tables), aggregate functions, GROUP BY, NULL handling
 
-**Key Insight:** Dr. Williams (Orthopedics) generates highest revenue ($9,850) with surgical procedures, while Dr. Johnson (Pediatrics) maintains highest patient volume (4 patients) with lower per-visit costs, revealing different specialization models requiring distinct resource allocation strategies.
+**Key Insight:** Dr. Williams (Orthopedics) generates the highest revenue ($41,200) with surgical procedures, while Dr. Johnson (Pediatrics) maintains the highest patient volume (4 patients) with lower per-visit costs, revealing different specialization models requiring distinct resource allocation strategies.
 
 ![Query 1 Results](screenshots/query1_results.png)
 
@@ -108,7 +108,7 @@ ORDER BY NumPatients DESC;
 
 **Skills Demonstrated:** Window functions (SUM OVER), CASE statements, conditional aggregation, percentage calculations
 
-**Key Insight:** Critical patients show 100% appointment completion (no cancellations), while Stable patients have 92% completion rate, suggesting higher engagement when health stakes are perceived as higher. Critical patients average 3.5 appointments vs 1.8 for Stable patients.
+**Key Insight:** Critical patients show 100% appointment completion (no cancellations), while Stable patients and Recovering Patients have 94.12% and 93.75% completion rates, respectively, suggesting higher engagement when health stakes are perceived as higher.
 
 ![Query 2 Results](screenshots/query2_results.png)
 
@@ -150,7 +150,7 @@ ORDER BY TotalRevenue DESC;
 
 **Skills Demonstrated:** Common Table Expressions (CTEs), window functions, complex aggregations, financial metrics
 
-**Key Insight:** Orthopedics leads with $12,650 total revenue and 100% collection rate, while Oncology shows $17,800 revenue but only 69% collection rate, indicating need for improved billing processes. Emergency Medicine handles highest volume (5 appointments) but lower per-visit revenue ($440), suggesting different business models requiring tailored strategies.
+**Key Insight:** Orthopedics leads with $12,600 total revenue and 100% collection rate, while Oncology shows $20,600 revenue but only a 66.5% collection rate, indicating a need for improved billing processes. Emergency Medicine handles the highest volume (5 appointments) but lower per-visit revenue ($440), suggesting different business models requiring tailored strategies.
 
 ![Query 3 Results](screenshots/query3_results.png)
 
@@ -187,7 +187,7 @@ LIMIT 15;
 
 **Skills Demonstrated:** Complex multi-table JOINs (6 tables), HAVING clause, date functions, TOP N analysis
 
-**Key Insight:** Top patient Christopher Jackson (Oncology) spent $17,800 over 4 appointments with chemotherapy treatments, while Richard Gonzalez (Orthopedics) spent $12,650 on surgical procedures. High-value patients in Oncology require 3-4 appointments vs single-visit surgical patients, revealing different care models and financial planning needs.
+**Key Insight:** Top patient Christopher Jackson (Oncology) spent $19,400 over 4 appointments with chemotherapy treatments, while Richard Gonzalez (Orthopedics) spent $12,050 on surgical procedures.
 
 ![Query 4 Results](screenshots/query4_results.png)
 
@@ -326,35 +326,6 @@ This project demonstrates:
 4. **Business Analysis:** Translating data into actionable insights for strategic decision-making
 5. **Data Quality:** Creating realistic, consistent datasets with proper relationships
 
----
-
-## 📁 Repository Structure
-
-```
-hospital-database-sql/
-├── data/
-│   ├── departments.csv
-│   ├── doctors.csv
-│   ├── docinfo.csv
-│   ├── salary.csv
-│   ├── patients.csv
-│   ├── appointments.csv
-│   ├── treatments.csv
-│   ├── prescriptions.csv
-│   ├── billing.csv
-│   └── rooms.csv
-├── sql_queries/
-│   ├── query1_doctor_workload.sql
-│   ├── query2_patient_distribution.sql
-│   ├── query3_department_performance.sql
-│   └── query4_high_value_patients.sql
-├── screenshots/
-│   ├── er_diagram.png
-│   ├── database_schema.png
-│   └── query1_results.png - query4_results.png
-├── hospital.db (pre-built database)
-└── README.md
-```
 
 ---
 
