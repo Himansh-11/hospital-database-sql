@@ -363,7 +363,7 @@ hospital-database-sql/
 This SQL database project complements my healthcare analytics portfolio:
 
 - **[Hospital Readmission Analytics Dashboard](https://himansh-11.github.io/healthcare-analytics-portfolio/)** - Power BI analysis of 2,496 hospitals, identifying $207M savings opportunity
-- **CNN Emotion Recognition** - Machine learning research on computational modeling of human perception
+- **CNN Emotion Recognition** - Machine learning research on computational modeling of human perception (coming soon)
 - **Higher Education Analytics** - Tableau dashboard on student retention (coming soon)
 
 ---
