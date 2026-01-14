@@ -329,20 +329,10 @@ This project demonstrates:
 
 ---
 
-## 🔗 Related Projects
-
-This SQL database project complements my healthcare analytics portfolio:
-
-- **[Hospital Readmission Analytics Dashboard](https://himansh-11.github.io/healthcare-analytics-portfolio/)** - Power BI analysis of 2,496 hospitals, identifying $207M savings opportunity
-- **CNN Emotion Recognition** - Machine learning research on computational modeling of human perception (coming soon)
-- **Higher Education Analytics** - Tableau dashboard on student retention (coming soon)
-
----
-
 ## 📫 Contact
 
 **Himansh**  
-Data Specialist | Healthcare Analytics | SQL & Database Design
+Data Specialist | Data Analytics | SQL & Database Design
 
 - **Portfolio:** [himansh-11.github.io/healthcare-analytics-portfolio](https://himansh-11.github.io/healthcare-analytics-portfolio/)
 - **LinkedIn:** [linkedin.com/in/himansh11](https://linkedin.com/in/himansh-rajak)
@@ -362,10 +352,6 @@ This project is available for educational and portfolio purposes. All data is sy
 - Database design follows industry best practices for healthcare data management
 - Inspired by real-world hospital information systems (HIS) architecture
 - Data structures aligned with HIPAA compliance principles for proper data separation
-
----
-
-⭐ **If you found this project helpful or interesting, please consider starring the repository!**
 
 ---
 
